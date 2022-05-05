@@ -43,6 +43,24 @@
       font-size: 6vw;
     }
   </style>
+  <script type="text/javascript"
+    src="https://raw.githubusercontent.com/datejs/Datejs/master/build/date-ru-RU.js"></script>
+</head>
+
+<body>
+
+  <div class="clock">
+    <div id="time" class="time"></div>
+    <div id="date" class="date">Среда – 1 мая – Неделя 28</div>
+  </div>
+
+  <div class="video-background">
+    <iframe frameborder="0" height="100%" width="100%"
+      src="https://www.youtube.com/embed?listType=playlist&list=PLkTz_WL5d6Ii6uqgJCGV442sSlp1PHYPw&autoplay=1&controls=0&showinfo=0&autohide=1&mute=1&loop=1"
+      allow="autoplay; fullscreen">
+    </iframe>
+  </div>
+
   <script>
     function updateClock() {
       let date = new Date();
@@ -53,26 +71,17 @@
       let time = h + ":" + m;
       document.getElementById("time").innerText = time;
       document.getElementById("title").innerText = time;
+
+      let today = Date.today();
+      let dow = today.toString("dddd");
+      let daymon = today.toString("m");
+      let week = today.toString("%V");
+      let dateStr = dow + "–" + daymon + "–" + week;
+      document.getElementById("date").innerText = date;
     }
 
     setInterval(updateClock, 1000)
   </script>
-</head>
-
-<body>
-
-  <div class="clock">
-    <div id="time" class="time"></div>
-    <div class="date">Среда – 1 мая – Неделя 28</div>
-  </div>
-
-  <div class="video-background">
-    <iframe frameborder="0" height="100%" width="100%"
-      src="https://www.youtube.com/embed?listType=playlist&list=PLkTz_WL5d6Ii6uqgJCGV442sSlp1PHYPw&autoplay=1&controls=0&showinfo=0&autohide=1&mute=1&loop=1"
-      allow="autoplay; fullscreen">
-    </iframe>
-  </div>
-
 
 </body>
 
