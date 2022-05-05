@@ -43,15 +43,14 @@
       font-size: 6vw;
     }
   </style>
-  <script type="text/javascript"
-    src="https://raw.githubusercontent.com/datejs/Datejs/master/build/date-ru-RU.js"></script>
+  <script type="text/javascript" src="js/luxon.min.js"></script>
 </head>
 
 <body>
 
   <div class="clock">
     <div id="time" class="time"></div>
-    <div id="date" class="date">Среда – 1 мая – Неделя 28</div>
+    <div id="date" class="date"></div>
   </div>
 
   <div class="video-background">
@@ -63,20 +62,11 @@
 
   <script>
     function updateClock() {
-      let date = new Date();
-      let h = date.getHours();
-      let m = date.getMinutes();
-      h = (h < 10) ? "0" + h : h;
-      m = (m < 10) ? "0" + m : m;
-      let time = h + ":" + m;
+      let dt = luxon.DateTime.now().setLocale("ru-RU")
+      let time = dt.toFormat("HH:mm");
       document.getElementById("time").innerText = time;
       document.getElementById("title").innerText = time;
-
-      let today = Date.today();
-      let dow = today.toString("dddd");
-      let daymon = today.toString("m");
-      let week = today.toString("%V");
-      let dateStr = dow + "–" + daymon + "–" + week;
+      let date = dt.toFormat("EEEE - d MMMM - неделя WW")
       document.getElementById("date").innerText = date;
     }
 
