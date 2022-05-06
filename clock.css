@@ -3,18 +3,18 @@ body {
   margin: 0;
 }
 
-.video-background {
+.layer {
   position: fixed;
-  z-index: -99;
   width: 100%;
   height: 100%;
 }
 
+.video-background {
+  z-index: -99;
+}
+
 .clock {
-  position: fixed;
   z-index: -50;
-  width: 100%;
-  height: 100%;
   color: white;
   text-align: center;
   filter: blur(2px) opacity(75%);
@@ -33,4 +33,9 @@ body {
 
 .clock .date {
   font-size: 6vw;
+}
+
+#pomodoro {
+  z-index: -70;
+  filter: blur(2px);
 }

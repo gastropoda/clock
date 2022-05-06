@@ -8,16 +8,18 @@
   <title id="title">clock</title>
   <link rel="stylesheet" href="clock.css">
   <script type="text/javascript" src="js/luxon.min.js"></script>
+  <script type="text/javascript" src="js/paper-full.min.js"></script>
 </head>
 
 <body>
+  <canvas id="pomodoro" class="layer" resize></canvas>
 
-  <div class="clock">
+  <div class="clock layer">
     <div id="time" class="time"></div>
     <div id="date" class="date"></div>
   </div>
 
-  <div class="video-background">
+  <div class="video-background layer">
     <iframe frameborder="0" height="100%" width="100%"
       src="https://www.youtube.com/embed?listType=playlist&list=PLkTz_WL5d6Ii6uqgJCGV442sSlp1PHYPw&autoplay=1&controls=0&showinfo=0&autohide=1&mute=1&loop=1"
       allow="autoplay; fullscreen">
@@ -25,6 +27,7 @@
   </div>
 
   <script type="text/javascript" src="js/clock.js"></script>
+  <script type="text/javascript" src="js/pomodoro.js"></script>
 </body>
 
 </html>
