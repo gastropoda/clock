@@ -26,9 +26,10 @@ body {
   text-shadow: 0px 0px 25px white;
   transition: 1s filter ease;
 
-  /* font */
+  /* text */
   color: white;
   font-family: serif;
+  text-align: center;
 }
 
 .clock:hover {
