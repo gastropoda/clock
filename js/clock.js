@@ -8,14 +8,16 @@ let locales = [{
   name: "en-US",
   week: "Week",
 }]
-let currentLocaleIndex = 0
+let currentLocaleIndex = localStorage.getItem("locale") % locales.length
 
 function currentLocale() {
   return locales[currentLocaleIndex];
 }
 
 function nextLocale() {
-  currentLocaleIndex = (currentLocaleIndex+1) % locales.length;
+  currentLocaleIndex = (currentLocaleIndex+1) % locales.length
+  localStorage.setItem("locale", currentLocaleIndex)
+  console.log(localStorage.getItem("locale"))
 }
 
 function updateClock() {
