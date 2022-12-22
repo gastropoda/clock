@@ -1,11 +1,11 @@
 {
 	"name": "Static Diogenes",
-	"image": "nginx:1.23",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": { "VERSION": "1.23" }
+	},
 	"forwardPorts": [ 80 ],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/nginx/html,type=bind,consistency=cached",
-	"mounts": [
-		"source=${localWorkspaceFolder}/.devcontainer/nginx/templates,target=/etc/nginx/templates,type=bind,consistency=cached,readonly=true"
-	],
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {}
 	}
