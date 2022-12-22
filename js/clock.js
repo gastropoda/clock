@@ -8,4 +8,20 @@ function updateClock() {
   doc.getElementById("date").innerText = date
 }
 
+function toggleFullscreen(element) {
+  let doc = window.document
+  if (doc.fullscreenElement) {
+    doc.exitFullscreen()
+  } else {
+    element.requestFullscreen()
+  }
+}
+
 setInterval(updateClock, 1000)
+window.addEventListener("keydown", (event) => {
+  if (event.code == "KeyF") {
+    let doc = window.document
+    let body = doc.getElementsByTagName("body")[0]
+    toggleFullscreen(body)
+  }
+})
