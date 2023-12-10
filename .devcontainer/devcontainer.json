@@ -6,6 +6,7 @@
 	},
 	"forwardPorts": [ 80 ],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/nginx/html,type=bind,consistency=cached",
+	"workspaceFolder": "/usr/share/nginx/html",
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {}
 	}
