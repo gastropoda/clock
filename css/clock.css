@@ -28,7 +28,7 @@ body {
 
   /* text */
   color: white;
-  font-family: serif;
+  font-family: 'URW Palladio L', 'Palatino', 'Times New Roman', Times, serif;
   text-align: center;
 }
 
@@ -41,5 +41,5 @@ body {
 }
 
 .clock .date {
-  font-size: 6vw;
+  font-size: 5vw;
 }
