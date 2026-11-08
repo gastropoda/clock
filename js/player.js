@@ -1,5 +1,11 @@
-const DEFAULT_PLAYLIST_ID = "PLyZP9pkio8SfCkbfPtbElHA3UxmnjN_Dh"
-const PLAYLIST_ID = new URLSearchParams(window.location.search).get("list") || DEFAULT_PLAYLIST_ID
+// PLyZP9pkio8SfCkbfPtbElHA3UxmnjN_Dh refuses to be embedded (error 150), so
+// its videos are listed here; ?list=<playlist id> still embeds a playlist
+const VIDEO_IDS = [
+  "t6jlhqNxRYk", "JKe0gryiCCw", "s3Tp8ESiiM4", "jgm58cbu0kw", "wjQq0nSGS28",
+  "hOgVAYpHPCc", "zowLNSKyfI0", "2za0IlcvGQM", "nvC1O2ArrwU", "QxVhNTfkTrg",
+  "HiUnYXKPYDE", "rFGt1IrfsAo", "WYi9TMfrI1M", "2QWlxqKneLs",
+]
+const PLAYLIST_ID = new URLSearchParams(window.location.search).get("list")
 
 function shuffleAndPlay(player) {
   player.setLoop(true)
@@ -22,14 +28,18 @@ function onYouTubeIframeAPIReady() {
     height: "100%",
     width: "100%",
     playerVars: {
-      listType: "playlist",
-      list: PLAYLIST_ID,
+      ...(PLAYLIST_ID && { listType: "playlist", list: PLAYLIST_ID }),
       autoplay: 1,
       controls: 0,
       mute: 1,
     },
     events: {
-      onReady: (event) => event.target.mute(),
+      onReady: (event) => {
+        event.target.mute()
+        if (!PLAYLIST_ID) {
+          event.target.loadPlaylist(VIDEO_IDS)
+        }
+      },
       onStateChange: (event) => {
         // the playlist is only known once the first video is loaded
         let playlist = event.target.getPlaylist()
