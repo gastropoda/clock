@@ -1,4 +1,5 @@
-const PLAYLIST_ID = "PLkTz_WL5d6Ii6uqgJCGV442sSlp1PHYPw"
+const DEFAULT_PLAYLIST_ID = "PLyZP9pkio8SfCkbfPtbElHA3UxmnjN_Dh"
+const PLAYLIST_ID = new URLSearchParams(window.location.search).get("list") || DEFAULT_PLAYLIST_ID
 
 function shuffleAndPlay(player) {
   player.setLoop(true)
