@@ -8,7 +8,7 @@ let locales = [{
   name: "en-US",
   week: "Week",
 }]
-let currentLocaleIndex = localStorage.getItem("locale") % locales.length
+let currentLocaleIndex = Number(localStorage.getItem("locale")) % locales.length || 0
 
 function currentLocale() {
   return locales[currentLocaleIndex];
@@ -17,7 +17,6 @@ function currentLocale() {
 function nextLocale() {
   currentLocaleIndex = (currentLocaleIndex+1) % locales.length
   localStorage.setItem("locale", currentLocaleIndex)
-  console.log(localStorage.getItem("locale"))
 }
 
 function updateClock() {
@@ -40,6 +39,7 @@ function toggleFullscreen(element) {
   }
 }
 
+updateClock()
 setInterval(updateClock, 1000)
 window.addEventListener("keydown", (event) => {
   if (event.code == "KeyF") {
