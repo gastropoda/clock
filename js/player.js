@@ -7,9 +7,18 @@ function shuffleAndPlay(player) {
   player.playVideoAt(0)
 }
 
+let player
+
+function playRandomVideo() {
+  let playlist = player && player.getPlaylist()
+  if (playlist && playlist.length) {
+    player.playVideoAt(Math.floor(Math.random() * playlist.length))
+  }
+}
+
 function onYouTubeIframeAPIReady() {
   let shuffled = false
-  new YT.Player("player", {
+  player = new YT.Player("player", {
     height: "100%",
     width: "100%",
     playerVars: {
@@ -23,7 +32,8 @@ function onYouTubeIframeAPIReady() {
       onReady: (event) => event.target.mute(),
       onStateChange: (event) => {
         // the playlist is only known once the first video is loaded
-        if (!shuffled && event.target.getPlaylist()) {
+        let playlist = event.target.getPlaylist()
+        if (!shuffled && playlist && playlist.length) {
           shuffled = true
           shuffleAndPlay(event.target)
         }
@@ -35,3 +45,9 @@ function onYouTubeIframeAPIReady() {
 let tag = document.createElement("script")
 tag.src = "https://www.youtube.com/iframe_api"
 document.head.appendChild(tag)
+
+window.addEventListener("keydown", (event) => {
+  if (event.code == "Enter") {
+    playRandomVideo()
+  }
+})
